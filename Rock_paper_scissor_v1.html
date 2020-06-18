@@ -1,0 +1,110 @@
+<html>
+    <title>The rock paper scissor</title>
+    <body>
+        <h1>
+            Welcome to the game , what is your choice ?
+        </h1>
+        <div id = "choices">
+            <button id = 'rock'>Rock</button>
+            <button id = 'paper'>Paper</button>
+            <button id = 'scissor'>Scissor</button>
+        </div>
+        <div id = "results">
+            <p></p>
+        </div>
+    </body>
+    <script>
+        function computerPlay(){
+            let str = ['rock','paper','scissor'];
+            return(str[Math.floor(Math.random()*str.length)]);
+        }
+        function playRound(playerSelection,computerSelection){
+            let computerscore = 0, yourscore = 0;
+            if (playerSelection =='rock'){
+                if (computerSelection == 'paper'){
+                    computerscore +=1;
+                    alert ('You lost!, paper beats rock');
+                    return(yourscore);
+                    
+                }
+                if (computerSelection == 'scissor'){
+                    yourscore+=1;
+                    alert ('You won!,rock beats scissor' );
+                    return(yourscore);
+                    
+                }
+                if (computerSelection == 'rock'){
+                    alert ("It's a tie lol!")
+                    return(yourscore = -1);
+                }
+            }
+            if (playerSelection == 'paper'){
+                if (computerSelection == 'scissor'){
+                    computerscore += 1;
+                    alert('You lost!, scissor beat paper');
+                    return(yourscore);
+                }
+                if (computerSelection =='rock'){                    
+                    yourscore +=1;
+                    alert('You won!,paper beats rock');
+                    return(yourscore);
+                }
+                if (computerSelection == 'paper'){
+                    alert ("It's a tie lol!")
+                    return(yourscore = -1);
+                }
+                }
+            if (playerSelection=="scissor"){
+                if (computerSelection == 'rock'){
+                    computerscore +=1;
+                    alert("You lost!, rock beat scissor");
+                    return(yourscore);
+                    
+                }
+                if (computerSelection == 'paper'){                    
+                    yourscore +=1;
+                    alert('You won!, scissor beat paper');
+                    return(yourscore);
+                }
+                if (computerSelection == 'scissor'){
+                    alert ("It's a tie lol!")
+                    return(yourscore = -1);
+                }
+            }
+            
+        }
+        
+
+        function playGame(playerSelection){
+                const results = document.querySelector('#results');
+                const p = results.querySelector('p');
+                results.removeChild(p);
+                playerSelection = playerSelection.toLowerCase();
+                let you = playRound(playerSelection,computerPlay());
+                i++;
+                const p1 = document.createElement('p');
+                
+
+                if (you ==1){
+                    player1+=1;
+                }
+                if (you ==0){
+                    computer+=1
+                }
+                p1.textContent = "your score:"+player1+" ,computer score:"+computer+" after "+i+" rounds.";
+                results.appendChild(p1);
+
+                
+                if ((player1 == 5)||(computer ==5)){
+                    alert('Thank you for playing, for a new game refresh the page .')
+
+                }
+        }
+        let player1= 0,computer= 0,i =0, count=0;
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach((button) =>{
+        button.addEventListener('click',(e) => {count = playGame(button.id);});
+        })
+
+    </script>
+</html>
